@@ -112,7 +112,7 @@ for i,img in enumerate(s.select('img')):
     img['data-image-slot']=f'image-{i+1:02}'
     img['alt']=f'Imagen de referencia {i+1}'
 css='\n'.join(x.text for x in original.find_all('style'))
-css+='\n/* Text additions use the original page palette and type scale. */\n.hero-brand{color:var(--marrom)}\n.faq-answer{white-space:pre-line}\n'
+css+='\n/* Text additions use the original page palette and type scale. */\n.hero-brand{color:var(--marrom)}\n.faq-answer{white-space:pre-line}\n.hero-img,.produto-img,.plano-body>img{height:auto;object-fit:contain}\n'
 (ROOT/'app/globals.css').write_text(css,encoding='utf-8')
 html=''.join(str(x) for x in s.body.contents)
 (ROOT/'app/content.ts').write_text('export const pageHtml = '+json.dumps(html,ensure_ascii=False)+';\n',encoding='utf-8')

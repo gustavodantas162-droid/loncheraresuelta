@@ -37,6 +37,9 @@ if not s.select_one('#plansCarouselTrack'):
     track.parent.insert_after(wrapper); wrapper.insert_before(heading)
 for sel,i in [('.hero-img',17),('.produto-img',16),('.plano-rec-card .plano-body > img',16)]:
     old=s.select_one(sel); old.attrs.update(manifest[i-1])
+    # These images are fluid. Fixed HTML dimensions caused the original height
+    # to remain in pixels after CSS reduced the width on mobile.
+    old.attrs.pop('width',None); old.attrs.pop('height',None)
 for x in s.select('[data-cta]'):
     x.name='a'; x['href']='https://pay.hotmart.com/Y107459178H?checkoutMode=10&bid=1788488400949'; x['data-cta']='checkout'
     x.attrs.pop('type',None); x.attrs.pop('aria-disabled',None)

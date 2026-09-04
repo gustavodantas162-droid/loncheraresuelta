@@ -9,3 +9,4 @@
 /* Text additions use the original page palette and type scale. */
 .hero-brand{color:var(--marrom)}
 .faq-answer{white-space:pre-line}
+.hero-img,.produto-img,.plano-body>img{height:auto;object-fit:contain}
