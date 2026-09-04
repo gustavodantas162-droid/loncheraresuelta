@@ -118,3 +118,8 @@ html=''.join(str(x) for x in s.body.contents)
 (ROOT/'app/content.ts').write_text('export const pageHtml = '+json.dumps(html,ensure_ascii=False)+';\n',encoding='utf-8')
 (ROOT/'public/reference-images.json').write_text(json.dumps([{'slot':x['data-image-slot'],'url':x['src']} for x in s.select('img')],indent=2),encoding='utf-8')
 print('Copy integrated:',len(entries),'FAQs;',len(s.select('[data-cta]')),'CTAs without URLs')
+
+# Reapply the approved assets and checkout after regenerating the original copy.
+if (ROOT / "scripts/image-map.json").exists():
+    import runpy
+    runpy.run_path(str(ROOT / "scripts/update-images.py"))
